@@ -1,0 +1,10 @@
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\bin\Release\PC-LRMate.exe.config
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\bin\Release\PC-LRMate.exe
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\bin\Release\PC-LRMate.pdb
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Release\PC_LRMate.Form1.resources
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Release\PC_LRMate.MainForm.resources
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Release\PC_LRMate.MDIParent.resources
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Release\PC_LRMate.Properties.Resources.resources
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Release\PC-LRMate.csproj.GenerateResource.Cache
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Release\PC-LRMate.exe
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Release\PC-LRMate.pdb

@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC-LRMate", "PC-LRMate\PC-LRMate.csproj", "{3773BB8E-8226-4527-A35C-FD3D232BA06C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PC-LRMate-Setup", "PC-LRMate-Setup\PC-LRMate-Setup.vdproj", "{475FFBDF-6C9E-4179-B4D5-FF109D72C8F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3773BB8E-8226-4527-A35C-FD3D232BA06C}.Debug|x86.ActiveCfg = Debug|x86
+		{3773BB8E-8226-4527-A35C-FD3D232BA06C}.Debug|x86.Build.0 = Debug|x86
+		{3773BB8E-8226-4527-A35C-FD3D232BA06C}.Release|x86.ActiveCfg = Release|x86
+		{3773BB8E-8226-4527-A35C-FD3D232BA06C}.Release|x86.Build.0 = Release|x86
+		{475FFBDF-6C9E-4179-B4D5-FF109D72C8F0}.Debug|x86.ActiveCfg = Debug
+		{475FFBDF-6C9E-4179-B4D5-FF109D72C8F0}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

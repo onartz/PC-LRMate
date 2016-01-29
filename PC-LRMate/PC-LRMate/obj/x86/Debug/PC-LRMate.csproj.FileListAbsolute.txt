@@ -1,0 +1,11 @@
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\bin\Debug\PC-LRMate.exe.config
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\bin\Debug\PC-LRMate.exe
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\bin\Debug\PC-LRMate.pdb
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Debug\PC_LRMate.Form1.resources
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Debug\PC_LRMate.MainForm.resources
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Debug\PC_LRMate.MDIParent.resources
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Debug\PC_LRMate.Properties.Resources.resources
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Debug\PC-LRMate.csproj.GenerateResource.Cache
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Debug\PC-LRMate.exe
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Debug\PC-LRMate.pdb
+C:\Users\nartz5\Documents\Visual Studio 2010\Projects\ProjetsAIPL\PC-LRmate\PC-LRMate\PC-LRMate\obj\x86\Debug\PC-LRMate.csprojResolveAssemblyReference.cache
