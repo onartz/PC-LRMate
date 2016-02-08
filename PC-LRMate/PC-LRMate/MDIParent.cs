@@ -13,41 +13,16 @@ namespace PC_LRMate
 {
     public partial class MDIParent : Form
     {
-        private int childFormNumber = 0;
-        //complete fileName
-        private string fullFileName;
-        private string klFileName;
-        private string pcFileName;
-        private string lsFileName;
-        private string fullPcFileName;
-        private string fullLsFileName;
 
-        //public string FullFileName
-        //{
-        //    get { return fullFileName; }
-        //    set {
-        //        fullFileName = value;
-        //        initFileNames();
-        //         }
-        //}
+        private int childFormNumber = 0;
+     
 
         public MDIParent()
         {
             InitializeComponent();
         }
 
-        private void initFileNames()
-        {
-            FileInfo fi = new FileInfo(fullFileName);
-            if (fi.Extension.ToUpper() == ".KL")
-            {
-                klFileName = fi.Name;
-                lsFileName = klFileName.Replace(".kl", ".ls");
-                pcFileName = klFileName.Replace(".kl", ".pc");
-                fullPcFileName = @".\" + pcFileName;
-                fullLsFileName = @".\" + lsFileName;
-            } 
-        }
+   
 
         private void ShowNewForm(object sender, EventArgs e)
         {
@@ -61,9 +36,19 @@ namespace PC_LRMate
         private void ShowForm(object sender, EventArgs e)
         {
             //MainForm childForm = new MainForm();
-            Form childForm = new MainForm(fullFileName);
+            Form karelForm = new MainForm();
+            karelForm.MdiParent = this;
+            karelForm.Text = "Karel : " + +childFormNumber++;
+            karelForm.Dock = DockStyle.Fill;
+            karelForm.Show();
+        }
+
+        private void ShowForm(object sender, EventArgs e, string KLFullFileName)
+        {
+            //MainForm childForm = new MainForm();
+            Form childForm = new MainForm(KLFullFileName);
             childForm.MdiParent = this;
-            childForm.Text = "Karel : " + fullFileName;
+            childForm.Text = "Karel : " + KLFullFileName;
             childForm.Dock = DockStyle.Fill;
             childForm.Show();
         }
@@ -76,21 +61,29 @@ namespace PC_LRMate
             openFileDialog.Filter = "Fichiers karel (*.kl)|*.kl|Tous les fichiers (*.*)|*.*";
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                fullFileName = openFileDialog.FileName;
-                initFileNames();
-                ShowForm(this, e);
+                ShowForm(this, e, openFileDialog.FileName);
             }
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "Fichiers karel (*.kl)|*.kl|Tous les fichiers (*.*)|*.*";
-            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+            //SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            //saveFileDialog.Filter = "Fichiers karel (*.kl)|*.kl|Tous les fichiers (*.*)|*.*";
+            //if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+            //{
+            //    string FileName = saveFileDialog.FileName;
+            //}
+
+            Form activeChild = this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            if (activeChild is MainForm)
             {
-                string FileName = saveFileDialog.FileName;
+                string newFileName = ((MainForm)activeChild).SaveAsFile();
+                activeChild.Text = "Karel : " + newFileName;
             }
+           
         }
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
@@ -100,8 +93,7 @@ namespace PC_LRMate
                 return;
             if (activeChild is MainForm)
             {
-               // string fileName = ((MainForm)activeChild).FileName;
-                fullFileName = ((MainForm)activeChild).SaveFile();
+                ((MainForm)activeChild).SaveFile();
             }
         }
 
@@ -170,8 +162,9 @@ namespace PC_LRMate
             Form activeChild = this.ActiveMdiChild;
             if (!(activeChild is MainForm))
                 return;
+            MainForm karelForm = (MainForm)activeChild;
             
-            if (((MainForm)activeChild).FileName == String.Empty)
+            if (((MainForm)activeChild).KarelFileEnv.KlFullFileName == String.Empty)
                 return;
 
             //Sauvegarde du fichier avant compilation
@@ -183,7 +176,7 @@ namespace PC_LRMate
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
                 process.StartInfo.FileName = Properties.Settings.Default.Compiler;
-                process.StartInfo.Arguments = "/l " + fullFileName;
+                process.StartInfo.Arguments = "/l " + karelForm.KarelFileEnv.KlFullFileName;
                 process.Start();
                 process.WaitForExit();
             }
@@ -196,29 +189,21 @@ namespace PC_LRMate
 
             try
             {
-                if (File.Exists(fullLsFileName))
-                {
-                    FileInfo fi = new FileInfo(fullFileName);
-                    if (activeChild is MainForm)
-                    {
-                        MainForm child = (MainForm)activeChild;
-                        child.FillResultLS(fullLsFileName);
-                        if (File.Exists(fullPcFileName))
-                        {
-                            if (File.Exists(fi.DirectoryName + @"\" + pcFileName))
-                                File.Delete(fi.DirectoryName + @"\" + pcFileName);
-                            String newLocation = fi.DirectoryName + @"\" + pcFileName;
-                            File.Move(fullPcFileName, newLocation);
-                            child.PcFileName = newLocation;
-                        }
-                        if (File.Exists(fullLsFileName))
-                        {
-                            if (File.Exists(fi.DirectoryName + @"\" + lsFileName))
-                                File.Delete(fi.DirectoryName + @"\" + lsFileName);
-                            File.Move(fullLsFileName, fi.DirectoryName + @"\" + lsFileName);
-                        }
-                    }
+                 //If pc file has been generated in local directory
+                if(File.Exists(@".\" + karelForm.KarelFileEnv.PcFileName)){
+                    if (File.Exists(karelForm.KarelFileEnv.PcFullFileName))
+                        File.Delete(karelForm.KarelFileEnv.PcFullFileName);
+                    File.Move(@".\" + karelForm.KarelFileEnv.PcFileName, karelForm.KarelFileEnv.PcFullFileName);
                 }
+
+                //If ls file has been generated in local directory
+                if (File.Exists(@".\" + karelForm.KarelFileEnv.LsFileName))
+                {
+                    if (File.Exists(karelForm.KarelFileEnv.LsFullFileName))
+                        File.Delete(karelForm.KarelFileEnv.LsFullFileName);
+                    File.Move(@".\" + karelForm.KarelFileEnv.LsFileName, karelForm.KarelFileEnv.LsFullFileName);
+                    karelForm.FillResultLS();
+                }    
             }
             catch (Exception ex)
             {
@@ -234,24 +219,23 @@ namespace PC_LRMate
                 return;
             if (!(activeChild is MainForm))
                 return;
-            
-            MainForm child = (MainForm)ActiveMdiChild;
-            if (child.PcFileName == null || child.PcFileName == string.Empty)
+
+            MainForm karelForm = (MainForm)activeChild;
+
+            if(karelForm.KarelFileEnv.PcFullFileName == null || karelForm.KarelFileEnv.PcFullFileName == string.Empty)
             {
                 MessageBox.Show("Pas de fichier compilé.");  
                 return;
             }
-            //activeChild = (MainForm)activeChild;
            
-            //FtpWebRequest ftpClient = (FtpWebRequest)FtpWebRequest.Create(Properties.Settings.Default.FTPServer + pcFileName);
-            FtpWebRequest ftpClient = (FtpWebRequest)FtpWebRequest.Create(new Uri(Properties.Settings.Default.FTPServer + pcFileName));
+           FtpWebRequest ftpClient = (FtpWebRequest)FtpWebRequest.Create(new Uri(Properties.Settings.Default.FTPServer + karelForm.KarelFileEnv.PcFullFileName));
             ftpClient.Credentials = new System.Net.NetworkCredential(Properties.Settings.Default.FTPUser, "");
             ftpClient.Method = System.Net.WebRequestMethods.Ftp.UploadFile;
             ftpClient.UseBinary = true;
             ftpClient.KeepAlive = true;
             ftpClient.UsePassive = Properties.Settings.Default.PassiveMode;
             //ftpClient.Timeout = 2000;
-            System.IO.FileInfo fi = new System.IO.FileInfo(child.PcFileName);
+            System.IO.FileInfo fi = new System.IO.FileInfo(karelForm.KarelFileEnv.PcFullFileName);
             ftpClient.ContentLength = fi.Length;
             byte[] buffer = new byte[4097];
             int bytes = 0;
@@ -272,6 +256,13 @@ namespace PC_LRMate
 
             uploadResponse.Close();
             MessageBox.Show(value);  
+        }
+
+
+
+        private void MDIParent_MdiChildActivate(object sender, EventArgs e)
+        {
+          
         }    
     }
 }

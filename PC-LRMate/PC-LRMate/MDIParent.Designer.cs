@@ -423,6 +423,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MDIParent";
             this.Text = "Karel pour LRMate 200iD";
+            this.MdiChildActivate += new System.EventHandler(this.MDIParent_MdiChildActivate);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);
