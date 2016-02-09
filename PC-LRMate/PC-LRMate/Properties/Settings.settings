@@ -6,7 +6,7 @@
       <Value Profile="(Default)">C:\Program Files\FANUC\WinOLPC\bin</Value>
     </Setting>
     <Setting Name="FTPServer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ftp://aip-lorrain/Ftprobotique/</Value>
+      <Value Profile="(Default)">ftp://aip-lorrain/</Value>
     </Setting>
     <Setting Name="FTPUser" Type="System.String" Scope="User">
       <Value Profile="(Default)">anonymous</Value>
@@ -18,7 +18,7 @@
       <Value Profile="(Default)">C:\Program Files\FANUC\WinOLPC\bin\ktrans.exe</Value>
     </Setting>
     <Setting Name="PassiveMode" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
