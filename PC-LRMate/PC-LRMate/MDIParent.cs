@@ -228,11 +228,12 @@ namespace PC_LRMate
                 return;
             }
            
-           FtpWebRequest ftpClient = (FtpWebRequest)FtpWebRequest.Create(new Uri(Properties.Settings.Default.FTPServer + karelForm.KarelFileEnv.PcFullFileName));
+           FtpWebRequest ftpClient = (FtpWebRequest)FtpWebRequest.Create(new Uri(Properties.Settings.Default.FTPServer + karelForm.KarelFileEnv.PcFileName));
             ftpClient.Credentials = new System.Net.NetworkCredential(Properties.Settings.Default.FTPUser, "");
             ftpClient.Method = System.Net.WebRequestMethods.Ftp.UploadFile;
             ftpClient.UseBinary = true;
-            ftpClient.KeepAlive = true;
+            ftpClient.KeepAlive = false;
+            ftpClient.Timeout = 10000;
             ftpClient.UsePassive = Properties.Settings.Default.PassiveMode;
             //ftpClient.Timeout = 2000;
             System.IO.FileInfo fi = new System.IO.FileInfo(karelForm.KarelFileEnv.PcFullFileName);
@@ -251,10 +252,18 @@ namespace PC_LRMate
             //fs.Flush();
             fs.Close();
             rs.Close();
-            FtpWebResponse uploadResponse = (FtpWebResponse)ftpClient.GetResponse();
-            string value = uploadResponse.StatusDescription;
-
-            uploadResponse.Close();
+            FtpWebResponse uploadResponse;
+            string value = "";
+            try
+            {
+                uploadResponse = (FtpWebResponse)ftpClient.GetResponse();
+                value = uploadResponse.StatusDescription;
+                uploadResponse.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+          
             MessageBox.Show(value);  
         }
 

@@ -119,9 +119,12 @@ namespace PC_LRMate
             catch (Exception ex){
                 throw ex;
             }
-
         }
 
+        /// <summary>
+        /// Update karel informations. Used for example after a save as.
+        /// </summary>
+        /// <param name="klFullFileName"></param>
         public void Update(string klFullFileName)
         {
             this.klFullFileName = klFullFileName;
