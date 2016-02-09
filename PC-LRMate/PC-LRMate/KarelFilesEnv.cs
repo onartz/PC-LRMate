@@ -6,6 +6,9 @@ using System.IO;
 
 namespace PC_LRMate
 {
+    /// <summary>
+    /// Informations globales sur le fichier karel traité
+    /// </summary>
     public class KarelFilesEnv
     {
         string rootDirectory;
