@@ -166,50 +166,8 @@ namespace PC_LRMate
             
             if (((MainForm)activeChild).KarelFileEnv.KlFullFileName == String.Empty)
                 return;
-
-            //Sauvegarde du fichier avant compilation
-            ((MainForm)activeChild).SaveFile();
-            //Compilation
-
-            try
-            {
-                System.Diagnostics.Process process = new System.Diagnostics.Process();
-                process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                process.StartInfo.FileName = Properties.Settings.Default.Compiler;
-                process.StartInfo.Arguments = "/l " + karelForm.KarelFileEnv.KlFullFileName;
-                process.Start();
-                process.WaitForExit();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Une erreur est survenue lors du lancement du programme Ktrans.exe : " + ex.Message);
-                return;
-            }
-
-
-            try
-            {
-                 //If pc file has been generated in local directory
-                if(File.Exists(@".\" + karelForm.KarelFileEnv.PcFileName)){
-                    if (File.Exists(karelForm.KarelFileEnv.PcFullFileName))
-                        File.Delete(karelForm.KarelFileEnv.PcFullFileName);
-                    File.Move(@".\" + karelForm.KarelFileEnv.PcFileName, karelForm.KarelFileEnv.PcFullFileName);
-                }
-
-                //If ls file has been generated in local directory
-                if (File.Exists(@".\" + karelForm.KarelFileEnv.LsFileName))
-                {
-                    if (File.Exists(karelForm.KarelFileEnv.LsFullFileName))
-                        File.Delete(karelForm.KarelFileEnv.LsFullFileName);
-                    File.Move(@".\" + karelForm.KarelFileEnv.LsFileName, karelForm.KarelFileEnv.LsFullFileName);
-                    karelForm.FillResultLS();
-                }    
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Une erreur est survenu lors de la copie des fichiers générés : " + ex.Message);
-            }
-            
+            ((MainForm)activeChild).Compile();
+           
         }
 
         private void toolStripButtonTransferer_Click(object sender, EventArgs e)
